@@ -20,10 +20,10 @@ function main() {
   window.XMLHttpRequest.prototype.open = function() {
 		
 		// If its a read-message status, block-it
-    if (arguments.length >= 2 && (console.log("1") || true)
-      && (arguments[0] == "POST" || arguments[0] == "post") && (console.log("2") || true)
-      && typeof arguments[1] === "string" && (console.log("3") || true)
-      && arguments[1].indexOf("change_read_status", 0) != -1 && (console.log("4") || true)) { 
+    if (arguments.length >= 2
+      && (arguments[0] == "POST" || arguments[0] == "post")
+      && typeof arguments[1] === "string"
+      && arguments[1].indexOf("change_read_status", 0) != -1
       return null;
     }
 
