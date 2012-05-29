@@ -23,7 +23,7 @@ function main() {
     if (arguments.length >= 2
       && (arguments[0] == "POST" || arguments[0] == "post")
       && typeof arguments[1] === "string"
-      && arguments[1].indexOf("change_read_status", 0) != -1
+      && arguments[1].indexOf("change_read_status", 0) != -1) {
       return null;
     }
 
