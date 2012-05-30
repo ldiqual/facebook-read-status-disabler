@@ -7,27 +7,27 @@
 // @match         http://*.facebook.com/*
 // @match         https://*.facebook.com/*
 // @updateURL     https://github.com/ldiqual/facebook-read-status-disabler/raw/master/facebook-read-status-disabler.user.js
-// @version       1.0
+// @version       1.0.1
 // @license       GPL version 3 or any later version (http://www.gnu.org/copyleft/gpl.html)
 // @author        Loïs Di Qual - http://lois.di-qual.net/
 // ==/UserScript==
 
 function main() {
-	// Save the original XHR.open handler
+  // Save the original XHR.open handler
   window.XMLHttpRequest.prototype.trueOpen = window.XMLHttpRequest.prototype.open;
 
-	// Override XHR.open with a custom function
+  // Override XHR.open with a custom function
   window.XMLHttpRequest.prototype.open = function() {
-		
-		// If its a read-message status, block-it
+    
+    // If its a read-message status, block-it
     if (arguments.length >= 2
-      && (arguments[0] == "POST" || arguments[0] == "post")
+      && (arguments[0].toLowerCase() == "post")
       && typeof arguments[1] === "string"
       && arguments[1].indexOf("change_read_status", 0) != -1) {
       return null;
     }
 
-		// If not, send the ajax call
+    // If not, send the ajax call
     this.trueOpen.apply(this, arguments);
   };
 }
